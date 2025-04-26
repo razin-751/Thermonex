@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        .converter {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 300px;
+        }
+        .converter h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+        .input-group input:focus {
+            outline: none;
+            background-color: rgba(255,255,255,0.3);
+        }
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="converter">
+    <h1><i class="fas fa-temperature-high icon"></i>Temp Converter</h1>
+    <div class="input-group">
+        <label for="celsius"><i class="fas fa-thermometer-half icon"></i>Celsius (°C)</label>
+        <input type="number" id="celsius" placeholder="Enter Celsius">
+    </div>
+    <div class="input-group">
+        <label for="fahrenheit"><i class="fas fa-thermometer-full icon"></i>Fahrenheit (°F)</label>
+        <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit">
+    </div>
+</div>
+
+<script>
+    const celsiusInput = document.getElementById('celsius');
+    const fahrenheitInput = document.getElementById('fahrenheit');
+
+    celsiusInput.addEventListener('input', function() {
+        const celsius = parseFloat(celsiusInput.value);
+        if (!isNaN(celsius)) {
+            fahrenheitInput.value = (celsius * 9/5 + 32).toFixed(2);
+        } else {
+            fahrenheitInput.value = '';
+        }
+    });
+
+    fahrenheitInput.addEventListener('input', function() {
+        const fahrenheit = parseFloat(fahrenheitInput.value);
+        if (!isNaN(fahrenheit)) {
+            celsiusInput.value = ((fahrenheit - 32) * 5/9).toFixed(2);
+        } else {
+            celsiusInput.value = '';
+        }
+    });
+</script>
+
+</body>
+</html>
